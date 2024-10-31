@@ -24,7 +24,7 @@ if prompt := st.chat_input("What is up?"):
 
     response = f"Echo: {prompt}"
     # Display assistant response in chat message container
-    with st.chat_message("assistant"):
+    with st.chat_message("BP"):
         st.markdown(response)
     # Add assistant response to chat history
-    st.session_state.messages.append({"role": "test", "content": response})
+    st.session_state.messages.append({"role": "BP", "content": response})
