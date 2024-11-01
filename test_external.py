@@ -85,7 +85,6 @@ def ini():
     opening_prompt="Hello! I am here to help you with an interpersonal problem.\n Can you please describe it?\n"
     
     ###### --------- Visuals settings
-    st.title("BuildPath Interface")
     st.session_state.messages.append({"role": "assistant", "content": opening_prompt})
 
 #Function to move to another state
@@ -314,8 +313,6 @@ def prep_exec(whole_convo, model_user, model_parsing):
 def submit_message(prompt1):
 
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.markdown(prompt)
 
     st.session_state.convo1.append({"role": "user", "content": prompt})
     GPT_response = globals()[st.session_state.user_flow['Stage_user_function'][st.session_state.s1]](st.session_state.convo1, st.session_state.model_user1, st.session_state.model_parsing1)
@@ -332,6 +329,7 @@ def submit_message(prompt1):
 def are_all_properties_populated(obj):
     return all(value for value in vars(obj).values())
 
+st.title("BuildPath Interface")
 
 ###### --------- Main program
 if "messages" not in st.session_state:
@@ -344,37 +342,3 @@ if prompt := st.chat_input("Type here"):
 for message in st.session_state.messages:
      with st.chat_message(message["role"]):
          st.markdown(message["content"])
-
-# from openai import OpenAI
-# import streamlit as st
-
-# st.title("ChatGPT-like clone")
-
-# client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-
-# if "openai_model" not in st.session_state:
-#     st.session_state["openai_model"] = "gpt-3.5-turbo"
-
-# if "messages" not in st.session_state:
-#     st.session_state.messages = []
-
-# for message in st.session_state.messages:
-#     with st.chat_message(message["role"]):
-#         st.markdown(message["content"])
-
-# if prompt := st.chat_input("What is up?"):
-#     st.session_state.messages.append({"role": "user", "content": prompt})
-#     with st.chat_message("user"):
-#         st.markdown(prompt)
-
-#     with st.chat_message("assistant"):
-#         stream = client.chat.completions.create(
-#             model=st.session_state["openai_model"],
-#             messages=[
-#                 {"role": m["role"], "content": m["content"]}
-#                 for m in st.session_state.messages
-#             ],
-#             stream=True,
-#         )
-#         response = st.write_stream(stream)
-#     st.session_state.messages.append({"role": "assistant", "content": response})
