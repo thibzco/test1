@@ -329,7 +329,7 @@ def submit_message(prompt1):
 def are_all_properties_populated(obj):
     return all(value for value in vars(obj).values())
 
-st.title("Prototype Thibz Interface")
+st.title("Prototype Thibz Interface !!")
 
 ###### --------- Main program
 if "messages" not in st.session_state:
